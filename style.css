@@ -1,0 +1,42 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+hr {
+  width: 500px;
+  height: 3px;
+  background-color: black;
+}
+
+#board {
+  width: 450px;
+  height: 450px;
+  background-color: goldenrod;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Styles used by the js file */
+.tile {
+  width: 147px;
+  height: 147px;
+  font-size: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.horizontal-lines {
+  border-bottom: 3px solid black;
+}
+
+.vertical-lines {
+  border-right: 3px solid black;
+}
+
+.winner {
+  background-color: lightgray;
+  color: crimson;
+}
