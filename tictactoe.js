@@ -43,6 +43,10 @@ function setTile() {
   let i = parseInt(coordinates[0]);
   let j = parseInt(coordinates[1]);
 
+  if (board[i][j] != ' ') {
+    return;
+  }
+
   board[i][j] = currentPlayer;
   this.innerText = currentPlayer;
 
