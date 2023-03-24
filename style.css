@@ -49,3 +49,16 @@ p {
   /* Make it into squares */
   aspect-ratio: 1 / 1;
 }
+
+.tile {
+  border: 2px solid hsl(var(--text));
+  background-color: hsl(var(--bkg));
+  border-radius: .5rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+  /* Clamp size, (smallest it will ever be: ideal size: largest size) */
+  font-size: clamp(2rem, calc(10vw + 1rem), 10rem);
+  aspect-ratio: 1 / 1;
+}

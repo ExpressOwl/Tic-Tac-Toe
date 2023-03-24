@@ -10,7 +10,7 @@ function createGameBoard() {
   // Give button functionality to each tile using map, could also use for if wanted
   // .join is needed at the end to get rid of the commas, so it is basically one long string of HTML
   const tileGrid = emptyTiles
-    .map((tile) => `<button class="tile"></button>`)
+    .map((tile) => `<button class="tile">X</button>`)
     .join("");
 
   gameBoard.innerHTML = tileGrid;
