@@ -1,41 +1,51 @@
-body {
+:root {
+  /* Refer to this sliding chart to see the color, in this case it is a deep red */
+  /* https://www.w3schools.com/css/css_colors_hsl.asp */
+  --hue: 10; 
+  --bkg: var(--hue) 40% 98%;
+  --text: var(--hue) 80% 20%;
+  --accent: var(--hue) 60% 50%;
+}
+
+* {
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
+  box-sizing: 0;
+  padding: 0;
+  margin: 0;
 }
 
-hr {
-  width: 500px;
-  height: 3px;
-  background-color: black;
+body {
+  display: grid;
+  place-items: center;
+  place-content: center;
+  min-height: 100vh;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: hsl(var(--bkg));
+  color: hsl(var(--text));
 }
 
-#board {
-  width: 450px;
-  height: 450px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
+h1 {
+  font-size: 3rem;
 }
 
-/* Styles used by the js file */
-.tile {
-  width: 147px;
-  height: 147px;
-  font-size: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: hsl(var(--accent));
+  color: hsl(var(--bkg));
+  padding: 0.5rem 1.5rem;
+  /* Pill shaped */
+  border-radius: 100vmax;
 }
 
-.horizontal-lines {
-  border-bottom: 3px solid black;
-}
-
-.vertical-lines {
-  border-right: 3px solid black;
-}
-
-.winner {
-  background-color: lightgray;
-  color: crimson;
+.gameboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .5rem;
+  width: 600px;
+  max-width: 90vw;
+  /* Make it into squares */
+  aspect-ratio: 1 / 1;
 }
