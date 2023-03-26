@@ -58,13 +58,13 @@ function updateTurn() {
 function restartGame() {
   let seconds = 3;
   const timer = setInterval(() => {
-    info.textContent = `restarting in ${seconds}...`
+    info.textContent = `restarting in ${seconds}...`;
     seconds--;
-    if (seconds < 0 ) {
+    if (seconds < 0) {
       clearInterval(timer);
       createGameBoard();
     }
-  }, 1000)
+  }, 1000);
 }
 
 function winMessage() {
@@ -97,6 +97,7 @@ function checkScore() {
   if (winner) {
     return winMessage();
   }
+
   updateTurn();
 }
 

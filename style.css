@@ -65,7 +65,17 @@ p {
   color: hsl(var(--hue) 60% 50%);
 }
 
+/* Shows turn colour when tabbed over */
+.tile:focus {
+  border-color: hsl(var(--hue) 60% 50%);
+  outline: 5px solid hsl(var(--hue) 60% 50%)  ;
+}
+
 /* X and O's are populated through JavaScript adding the data attribute of data-value */
+.tile[data-value] {
+  cursor: not-allowed;
+}
+
 .tile[data-hover]::before {
   content: attr(data-hover);
   opacity: .3;
