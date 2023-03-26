@@ -1,5 +1,6 @@
 const gameBoard = document.querySelector("#board");
 const info = document.querySelector("#info");
+const restartButton = document.querySelector("#restart");
 // Initialize turn system
 let turn;
 
@@ -101,8 +102,6 @@ function checkScore() {
   updateTurn();
 }
 
-
-
 // Click event for the tiles to know where to place the X and O's
 // You can add an event listener to each individual tile but this function is for the whole board instead.
 function handleGameBoardClick(e) {
@@ -131,3 +130,5 @@ function handleMouseHover(e) {
 function handleMouseHoverLeave(e) {
   e.target.dataset.hover = "";
 }
+
+restartButton.addEventListener("click", restartGame);
