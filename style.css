@@ -61,13 +61,17 @@ p {
   /* Clamp size, (smallest it will ever be: ideal size: largest size) */
   font-size: clamp(2rem, calc(10vw + 1rem), 10rem);
   aspect-ratio: 1 / 1;
+  /* JavaScript is used to change the hue  */
+  color: hsl(var(--hue) 60% 50%);
 }
 
 /* X and O's are populated through JavaScript adding the data attribute of data-value */
-.tile[data-value="X"]::before {
-  content: "X";
+.tile[data-hover]::before {
+  content: attr(data-hover);
+  opacity: .3;
 }
 
-.tile[data-value="O"]::before {
-  content: "O";
+.tile[data-value]::before {
+  content: attr(data-value);
+  opacity: 1;
 }

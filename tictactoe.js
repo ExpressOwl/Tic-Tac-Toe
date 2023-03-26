@@ -31,9 +31,27 @@ function createGameBoard() {
   info.textContent = `${turn}'s turn`;
 
   gameBoard.addEventListener("click", handleGameBoardClick);
+  // When handling the handleMouseOver function, we cannot use:
+  // gameBoard.addEventListener("mouseenter", handleMouseHover),
+  // because doing so will affect the whole board, not the inidividual tiles
+  const allTiles = gameBoard.querySelectorAll(".tile");
+  allTiles.forEach((t) => {
+    t.addEventListener("mouseenter", handleMouseHover);
+    // mouseleave event is fired at an element when the cursor is moved out,
+    // in this case it fires the handleMouseHoverLeave function made
+    t.addEventListener("mouseleave", handleMouseHoverLeave);
+  });
 }
 
 createGameBoard();
+
+function updateTurn() {
+  turn = turn === "X" ? "O" : "X";
+  info.textContent = `${turn}'s turn`;
+  // Used to set a faint blue or red tint on the tiles to indicate whos turn it is
+  // However the individual X and O's will all be red unless we update them in the e.target, within the handleBoardGameClick function
+  document.documentElement.style.setProperty("--hue", turn === "X" ? 10 : 200);
+}
 
 // Check Score and then update the board,the handleBoardGame function was made first though
 function checkScore() {
@@ -52,18 +70,37 @@ function checkScore() {
       tileValues[a] === tileValues[c]
     );
   });
-  console.log(winner);
-
-  turn = turn === "X" ? "O" : "X";
+  if (winner) {
+    return winner()
+  }
+  updateTurn();
 }
 
 // Click event for the tiles to know where to place the X and O's
 // You can add an event listener to each individual tile but this function is for the whole board instead.
 function handleGameBoardClick(e) {
+  // Setting a const to for a value existing
   const valueExists = e.target.dataset.value;
+  // If value does not exists, this happens
   if (!valueExists) {
     // Reminder that turn is default X
     e.target.dataset.value = turn;
+    // Using e.target instead of document because
+    e.target.style.setProperty("--hue", turn === "X" ? 10 : 200);
     checkScore();
   }
+}
+
+function handleMouseHover(e) {
+  // Once again setting a const for a value existing
+  const valueExists = e.target.dataset.value;
+  if (!valueExists) {
+    // Hovering will indicate whatever turn it currently is
+    e.target.dataset.hover = turn;
+    e.target.style.setProperty("--hue", turn === "X" ? 10 : 200);
+  }
+}
+
+function handleMouseHoverLeave(e) {
+  e.target.dataset.hover = "";
 }
