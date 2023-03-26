@@ -21,9 +21,10 @@ body {
   place-content: center;
   min-height: 100vh;
   gap: 2rem;
-  padding: 2rem;
+  margin: 2rem;
   background-color: hsl(var(--bkg));
   color: hsl(var(--text));
+  background: #F2DCA2;
 }
 
 h1 {

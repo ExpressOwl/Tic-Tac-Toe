@@ -59,7 +59,7 @@ function updateTurn() {
 function restartGame() {
   let seconds = 3;
   const timer = setInterval(() => {
-    info.textContent = `restarting in ${seconds}...`;
+    info.textContent = `Restarting in ${seconds}...`;
     seconds--;
     if (seconds < 0) {
       clearInterval(timer);
