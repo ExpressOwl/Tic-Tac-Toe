@@ -1,7 +1,7 @@
 :root {
   /* Refer to this sliding chart to see the color, in this case it is a deep red */
   /* https://www.w3schools.com/css/css_colors_hsl.asp */
-  --hue: 10; 
+  --hue: 10;
   --bkg: var(--hue) 40% 98%;
   --text: var(--hue) 80% 20%;
   --accent: var(--hue) 60% 50%;
@@ -28,6 +28,56 @@ body {
 
 h1 {
   font-size: 3rem;
+  text-decoration: underline;
+}
+
+#restart {
+  --border: 5px; /* the border width */
+  --slant: 0.7em; /* control the slanted corners */
+  --color: #f3738a; /* the color */
+
+  font-size: 1.5rem;
+  padding: 0.4em 1.2em;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--color);
+  background: linear-gradient(to bottom left, var(--color) 50%, #0000 50.1%) top
+      right,
+    linear-gradient(to top right, var(--color) 50%, #0000 50.1%) bottom left;
+  background-size: calc(var(--slant) + 1.3 * var(--border))
+    calc(var(--slant) + 1.3 * var(--border));
+  background-repeat: no-repeat;
+  box-shadow: 0 0 0 200px inset var(--s, #0000),
+    0 0 0 var(--border) inset var(--color);
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--slant)) 0,
+    100% var(--slant),
+    100% 100%,
+    var(--slant) 100%,
+    0 calc(100% - var(--slant))
+  );
+  transition: color var(--t, 0.3s), background-size 0.3s;
+}
+
+#restart:focus-visible {
+  outline-offset: calc(-1*var(--border));
+  outline: var(--border) solid #000c;
+  clip-path: none;
+  background-size: 0 0;
+}
+
+#restart:hover,
+#restart:active {
+  background-size: 100% 100%;
+  color: #fff;
+  --t: 0.2s 0.1s;
+}
+
+#restart:active {
+  --s: #0005;
+  transition: none;
 }
 
 p {
@@ -43,7 +93,7 @@ p {
 .gameboard {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: .5rem;
+  gap: 0.5rem;
   width: 600px;
   max-width: 90vw;
   /* Make it into squares */
@@ -53,7 +103,7 @@ p {
 .tile {
   border: 2px solid hsl(var(--text));
   background-color: hsl(var(--bkg));
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   cursor: pointer;
   display: grid;
   place-items: center;
@@ -68,7 +118,7 @@ p {
 /* Shows turn colour when tabbed over */
 .tile:focus {
   border-color: hsl(var(--hue) 60% 50%);
-  outline: 5px solid hsl(var(--hue) 60% 50%)  ;
+  outline: 5px solid hsl(var(--hue) 60% 50%);
 }
 
 /* X and O's are populated through JavaScript adding the data attribute of data-value */
@@ -78,7 +128,7 @@ p {
 
 .tile[data-hover]::before {
   content: attr(data-hover);
-  opacity: .3;
+  opacity: 0.3;
 }
 
 .tile[data-value]::before {

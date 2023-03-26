@@ -94,12 +94,14 @@ function checkScore() {
       tileValues[a] === tileValues[c]
     );
   });
+
   if (winner) {
     return winMessage();
   }
-
   updateTurn();
 }
+
+
 
 // Click event for the tiles to know where to place the X and O's
 // You can add an event listener to each individual tile but this function is for the whole board instead.
