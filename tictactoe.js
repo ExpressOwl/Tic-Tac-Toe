@@ -41,6 +41,8 @@ function createGameBoard() {
     // in this case it fires the handleMouseHoverLeave function made
     t.addEventListener("mouseleave", handleMouseHoverLeave);
   });
+  // Does not matter for the first time or for Firefox users
+  gameBoard.removeAttribute("inert");
 }
 
 createGameBoard();
@@ -51,6 +53,28 @@ function updateTurn() {
   // Used to set a faint blue or red tint on the tiles to indicate whos turn it is
   // However the individual X and O's will all be red unless we update them in the e.target, within the handleBoardGameClick function
   document.documentElement.style.setProperty("--hue", turn === "X" ? 10 : 200);
+}
+
+function restartGame() {
+  let seconds = 3;
+  const timer = setInterval(() => {
+    info.textContent = `restarting in ${seconds}...`
+    seconds--;
+    if (seconds < 0 ) {
+      clearInterval(timer);
+      createGameBoard();
+    }
+  }, 1000)
+}
+
+function winMessage() {
+  info.textContent = `${turn} wins!`;
+  // The game will continue if the event listener persists, thus we remove it
+  gameBoard.removeEventListener("click", handleGameBoardClick);
+  // However, even if we can't place X or O's anymore we can still hover over it,
+  // We can use inert and set to true to remove all interactivity, works in all browsers except for FireFox
+  gameBoard.setAttribute("inert", true);
+  setTimeout(restartGame, 500);
 }
 
 // Check Score and then update the board,the handleBoardGame function was made first though
@@ -71,7 +95,7 @@ function checkScore() {
     );
   });
   if (winner) {
-    return winner()
+    return winMessage();
   }
   updateTurn();
 }
